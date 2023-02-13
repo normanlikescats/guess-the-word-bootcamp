@@ -28,13 +28,13 @@ class App extends React.Component {
         wordDisplay.push("_");
       }
     }
-    return wordDisplay.toString();
+    return wordDisplay.join(' ');
   };
 
   // Insert form callback functions handleChange and handleSubmit here
   handleChange =(e)=>{
     this.setState({
-      currGuess: e.target.value,
+      currGuess: e.target.value.toLowerCase(),
     });
   };
 
@@ -43,6 +43,8 @@ class App extends React.Component {
     let currGuessesLeft = (this.state.guessesLeft)
     if(this.state.guessedLetters.indexOf(this.state.currGuess)>-1){
       alert("💀💀💀 You've already guessed that, ya noob! 💀💀💀")
+    }else if (this.state.currGuess.length > 1){
+      alert("Guess only 1️⃣ letter at a time!")
     }else if(this.state.currWord.indexOf(this.state.currGuess) === -1){
       currGuessesLeft -= 1;
       this.state.guessedLetters.push(this.state.currGuess);
