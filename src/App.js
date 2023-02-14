@@ -17,6 +17,7 @@ class App extends React.Component {
       // Insert form input state here
       currGuess:'',
       roundsWon: 0 ,
+      hintUsed: false,
     };
   }
 
@@ -81,6 +82,7 @@ class App extends React.Component {
       guessedLetters: [],
       guessesLeft: 10,
       currGuess:'',
+      hintUsed: false,
     });
   }
 
@@ -97,7 +99,8 @@ class App extends React.Component {
     currGuessedLetters.push(randomHint)
 
     this.setState({
-      guessedLetters: currGuessedLetters
+      guessedLetters: currGuessedLetters,
+      hintUsed: true,
     })
   }
 
@@ -123,7 +126,7 @@ class App extends React.Component {
               <h3>Word Display</h3>
               {wordDisplay}
               <br/><br/>
-              <button className = 'app-button' onClick={this.getHint}>Hint!</button>
+              {this.state.hintUsed ? null:<button className = 'app-button' onClick={this.getHint}>Hint!</button>}
             </div>
             <div>
               <h3>Rounds Won: {this.state.roundsWon}</h3>
